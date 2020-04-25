@@ -1,6 +1,8 @@
 package siflo.dialy;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -9,6 +11,37 @@ import java.util.Set;
  * For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb".
  */
 public class Daily425 {
+  public static String longestKDistCharsSlipWindows(String a,int k){
+    char[] cs = a.toCharArray();
+    int l,r;
+    String subStr = "";
+    int d=0;
+    int max = 0;
+    Map<Character,Integer> distinctChars = new HashMap<>();
+    for(l=0,r=0;l<cs.length&&r<cs.length;r++){
+      if(!distinctChars.containsKey(cs[r]))
+        d++;
+     Integer dcc =  distinctChars.get(cs[r])  ;
+     if(dcc == null)
+       distinctChars.put(cs[r],1);
+     else
+       distinctChars.put(cs[r],dcc+1);
+     while(d>k){
+       int dcc1 =  distinctChars.get(cs[l])  ;
+       distinctChars.put(cs[l],dcc1-1);
+       if(distinctChars.get(cs[l])==0)
+         d--;
+       l++;
+     }
+     if(r-l+1>max){
+       subStr = String.valueOf(cs,l,r-l+1);
+     }
+     max = Math.max(max,r-l+1);
+
+
+    }
+    return subStr;
+  }
   public static String longestKeDistctChars(String a,int k){
 
     char[] chars = a.toCharArray();
@@ -36,6 +69,6 @@ public class Daily425 {
   }
 
   public static void main(String[] args) {
-    System.out.println(longestKeDistctChars("abadcba",2));
+    System.out.println(longestKDistCharsSlipWindows("abcade",3));
   }
 }
