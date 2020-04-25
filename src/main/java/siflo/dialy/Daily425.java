@@ -12,6 +12,8 @@ import java.util.Set;
  */
 public class Daily425 {
   public static String longestKDistCharsSlipWindows(String a,int k){
+    if(a==null || a.length()==0)
+      return "";
     char[] cs = a.toCharArray();
     int l,r;
     String subStr = "";
@@ -43,7 +45,8 @@ public class Daily425 {
     return subStr;
   }
   public static String longestKeDistctChars(String a,int k){
-
+    if(a==null || a.length()==0)
+      return "";
     char[] chars = a.toCharArray();
     String subStr = "";
     int i=0,j=0;
