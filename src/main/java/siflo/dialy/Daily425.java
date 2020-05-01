@@ -72,6 +72,6 @@ public class Daily425 {
   }
 
   public static void main(String[] args) {
-    System.out.println(longestKDistCharsSlipWindows("abcade",3));
+    System.out.println(longestKDistCharsSlipWindows("krapper",3));
   }
 }
