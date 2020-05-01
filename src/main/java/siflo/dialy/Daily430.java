@@ -15,7 +15,7 @@ public class Daily430 {
 
   static void solution(int[] a, int k) {
     int max = Integer.MIN_VALUE;
-    int l = 0, r = 0;
+    int r = 0;
     int d = 0;
     int max1 = Integer.MIN_VALUE;
     for (; r < a.length; r++) {
