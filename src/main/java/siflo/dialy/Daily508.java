@@ -13,29 +13,43 @@ import siflo.datastructure.ListNodeUtils;
  */
 public class Daily508 {
 
-  public static int printLastKElement(ListNode node, int k) {
-    int[] a = new int[k];
+  public static void printLastKElement(ListNode node, int k) {
+    ListNode head = node;
+
+    ListNode[] a = new ListNode[k];
     int count = 0;
     while (node != null) {
       if (count == k) {
         count = 0;
       }
-      a[count] = node.val;
-      count++;
-      node = node.next;
-    }
-    if (count == k) {
-      return a[0];
-    } else {
-      return a[count];
+      if (node.next == null) {
+        //end
+        if (count == k - 1) {
+          if (a[0] == head) {
+            head = head.next;
+
+          } else {
+            a[1].next = a[0].next;
+          }
+          a[0].next = null;
+        } else {
+          a[count].next = a[count + 1].next;
+          a[count + 1].next = null;
+        }
+        return;
+      } else {
+        a[count] = node;
+        count++;
+        node = node.next;
+      }
     }
 
   }
 
   public static void main(String[] args) {
-    ListNode listNode = ListNodeUtils.stringToListNode("[1,2,3,4,5,6,7]");
-    int a = printLastKElement(listNode, 6);
-    System.out.println(a);
+    ListNode listNode = ListNodeUtils.stringToListNode("[1,2,3,4,5]");
+     printLastKElement(listNode, 2);
+
   }
 
 }
