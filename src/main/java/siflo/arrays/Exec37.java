@@ -10,10 +10,11 @@ import java.util.Map;
 public class Exec37 {
   private static Map<String, List<String>>  stateMachine = new HashMap<>();
   static {
-    stateMachine.put("start",List.of(new String[]{"start","signed","in_number","end"}));
-    stateMachine.put("signed",List.of(new String[]{"end","end","in_number","end"}));
-    stateMachine.put("in_number",List.of(new String[]{"end","end","in_number","end"}));
-    stateMachine.put("end",List.of(new String[]{"end","end","end","end"}));
+
+//    stateMachine.put("start",List.of(new String[]{"start","signed","in_number","end"}));
+//    stateMachine.put("signed",List.of(new String[]{"end","end","in_number","end"}));
+//    stateMachine.put("in_number",List.of(new String[]{"end","end","in_number","end"}));
+//    stateMachine.put("end",List.of(new String[]{"end","end","end","end"}));
   }
   static int getInputType(char c){
     switch (c){

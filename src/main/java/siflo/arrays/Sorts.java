@@ -83,12 +83,44 @@ public class Sorts {
     quickSelect(0,a.length-1,a);
   }
 
+  static public void topDownMergeSoft(int[] a,int low,int h){
+    if(low<h) {
+      int mid = (h+low)/2;
+      topDownMergeSoft(a,low,mid);
+      topDownMergeSoft(a,mid+1,h);
+      merge(a,low,mid,h);
+    }
+
+  }
+  static public void merge(int[] a ,int low,int mid,int h){
+    int[] aux = new int[h-low+1];
+    int i = low,j=mid+1;
+    int k = 0;
+    while(i<=mid && j<=h){
+      if(a[i]<a[j])
+        aux[k++] = a[i++];
+      else
+        aux[k++] = a[j++];
+    }
+
+    while(i<=mid)
+      aux[k++] = a[i++];
+    while(j<=h)
+      aux[k++] = a[j++];
+    for(int m=0;m<aux.length;m++)
+      a[m+low] = aux[m];
+
+  }
+  static public void mergeSort(int[] a){
+    topDownMergeSoft(a,0,a.length-1);
+  }
 
   public static void main(String[] args) {
 //    int[] a = new int[]{10, 36, 27, 92, 48, 78, 25, 54, 4, 28};
-    int[] a = new int[]{4,3,2,1};
+    int[] a = new int[]{5,4,3,2,1};
 
-    quick(a);
+//    quick(a);
+    mergeSort(a);
     Arrays.stream(a).forEach(i -> System.out.println(i));
   }
 }
